@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-           git branch: 'main', url: ''
+           git branch: 'main', url: 'https://github.com/taiwoj14/infra-feb24.git'
   
             }
         }
@@ -31,9 +31,9 @@ pipeline {
            }
         }
         stage("Deploy to EKS") {
-            when {
-              expression { params.apply }
-            }
+          //  when {
+           //   expression { params.apply }
+          //  }
             steps {
                   sh "aws eks update-kubeconfig --name eks_cluster"
                    sh "kubectl apply -f deployment.yml"
